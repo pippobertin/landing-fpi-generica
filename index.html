@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPI – Fondi Paritetici Interprofessionali per le aziende</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep:    #00386b;
+    --navy-mid:     #1c4e7b;
+    --navy-darker:  #002a55;
+    --steel:        #8aaec8;
+    --steel-pale:   #d7e3ee;
+    --gray:         #787878;
+    --orange:       #da9100;
+    --orange-light: #e1a52e;
+    --bg:           #f5f7fa;
+    --bg-alt:       #edf1f6;
+    --bg-soft:      #f0f3f7;
+    --text:         #00386b;
+    --text-soft:    #3d5070;
+    --divider:      rgba(0,56,107,0.14);
+    --white:        #ffffff;
+    --pattern-blu:  url('background-blu.png');
+    --pattern-org:  url('background-orange.png');
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5vw;
+    background: rgba(245,247,250,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    display: inline-flex; align-items: center;
+    color: var(--navy-deep); text-decoration: none;
+    height: 24px;
+  }
+  .nav-logo svg { height: 100%; width: auto; display: block; }
+  .nav-cta {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: .78rem;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--orange); background: transparent;
+    border: 1.5px solid var(--orange);
+    text-decoration: none;
+    padding: .8rem 1.6rem .8rem 1.8rem;
+    border-radius: 999px;
+    display: inline-flex; align-items: center; gap: .7rem;
+    transition: background .2s, color .2s;
+  }
+  .nav-cta:hover { background: var(--orange); color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 10rem 5vw 6rem;
+    background-color: var(--navy-deep);
+    background-image: var(--pattern-blu);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative; overflow: hidden;
+  }
+  .hero-deco { display: none; }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 1;
+    text-align: left;
+  }
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500; font-size: clamp(.9rem, 2.2vw, 1rem);
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; line-height: 1.02;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    color: #ffffff; margin-bottom: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    max-width: 18ch;
+  }
+  .hero h1 em { font-style: normal; color: inherit; }
+  .hero-sub {
+    font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+    color: var(--white); max-width: 50ch;
+    margin: 0 0 2.4rem; font-weight: 400;
+    line-height: 1.4;
+  }
+  .hero-alert {
+    font-weight: 400; font-size: clamp(1rem, 2.2vw, 1.1rem);
+    color: #ffffff; max-width: 52ch;
+    margin: 2.6rem 0 0;
+    border-left: 4px solid var(--orange);
+    padding: .4rem 0 .4rem 1.4rem;
+    text-align: left; background: transparent;
+  }
+  .btn-group {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: .4rem;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: .8rem;
+    background: var(--orange); color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: clamp(.82rem, 2vw, .88rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    padding: 1.05rem 2rem; text-decoration: none;
+    border-radius: 999px; border: 1.5px solid var(--orange);
+    transition: background .2s, transform .15s;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--orange-light); border-color: var(--orange-light); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: .8rem;
+    background: transparent; color: #fff;
+    border: 1.5px solid #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: clamp(.82rem, 2vw, .88rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    padding: 1.05rem 2rem; text-decoration: none;
+    border-radius: 999px;
+    transition: background .2s, color .2s, transform .15s;
+  }
+  .btn-secondary:hover { background: #fff; color: var(--navy-deep); transform: translateY(-1px); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 5rem 5vw; }
+  .section-alt { background: var(--bg-alt); }
+  .section-white { background: var(--white); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500; font-size: clamp(.78rem, 1.8vw, .85rem);
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--navy-deep); margin-bottom: 1.6rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--navy-deep);
+    display: block;
+  }
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; line-height: 1.04;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--navy-deep); margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+  }
+  .section-title em { font-style: normal; color: var(--orange); }
+
+  /* ── COME FUNZIONA ── */
+  .funziona-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem; align-items: start;
+  }
+  .funziona-text p {
+    font-size: clamp(1rem, 2.5vw, 1.05rem);
+    color: var(--text-soft); margin-bottom: 1.2rem; max-width: 54ch;
+  }
+  .funziona-text p strong { color: var(--navy-deep); font-weight: 600; }
+
+  .plafond-block {
+    background-color: var(--orange);
+    background-image: var(--pattern-org);
+    background-size: cover;
+    background-position: center;
+    padding: 2.4rem 2rem 2rem;
+    position: relative;
+  }
+  .plafond-block .section-label {
+    color: var(--white);
+    border-bottom-color: rgba(255,255,255,.4);
+  }
+  .plafond-item {
+    background: var(--white);
+    padding: 1.6rem 1.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-left: none;
+    box-shadow: 0 10px 30px rgba(0,46,88,.12);
+  }
+  .plafond-amount {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; font-size: clamp(1.7rem, 3.6vw, 2.1rem);
+    color: var(--orange); line-height: 1.1;
+    text-transform: uppercase; letter-spacing: -.01em;
+  }
+  .plafond-note {
+    font-size: clamp(.82rem, 1.8vw, .9rem);
+    color: var(--orange); margin-top: .35rem;
+  }
+  .plafond-disclaimer {
+    font-size: clamp(.76rem, 1.8vw, .82rem);
+    color: var(--white); font-style: normal;
+    border-top: 1px solid rgba(255,255,255,.3);
+    padding-top: 1rem; margin-top: 1rem; line-height: 1.55;
+  }
+
+  /* ── AFFIANCAMENTO ── */
+  .affiancamento-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .affiancamento-text p {
+    font-size: clamp(1rem, 2.5vw, 1.05rem);
+    color: var(--text-soft); margin-bottom: 0; max-width: 54ch;
+    text-align: left;
+    line-height: 1.6;
+  }
+  .topic-block { margin-bottom: 1.8rem; }
+  .topic-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(.85rem, 1.9vw, .95rem);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: .55rem;
+    line-height: 1.3;
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
+  .pill {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(.78rem, 1.8vw, .82rem);
+    letter-spacing: .14em; text-transform: uppercase;
+    font-weight: 600;
+    padding: .55rem 1.1rem;
+    border: 1.5px solid var(--navy-deep); color: var(--navy-deep);
+    border-radius: 999px;
+  }
+  .note-box {
+    margin-top: 2rem; padding: .6rem 0 .6rem 1.4rem;
+    background: transparent; border-left: 4px solid var(--orange);
+  }
+  .note-box p {
+    font-size: clamp(.98rem, 2.2vw, 1.05rem);
+    color: var(--orange); margin: 0 !important;
+    font-style: normal; font-weight: 600; line-height: 1.5;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background-color: var(--navy-deep);
+    background-image: var(--pattern-blu);
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 5vw 7rem;
+    position: relative; overflow: hidden;
+  }
+  .cta-inner { max-width: 1100px; margin: 0 auto; }
+  .cta-heading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; font-size: clamp(2rem, 4.5vw, 2.8rem);
+    color: #fff; margin-bottom: 3rem; text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+  }
+  .cta-heading em { font-style: normal; color: var(--orange); }
+  .cta-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .cta-card {
+    padding: 2.4rem 2.4rem 2rem;
+    transition: transform .2s;
+    display: flex; flex-direction: column;
+    min-height: 320px;
+  }
+  .cta-card:hover { transform: translateY(-3px); }
+  .cta-card-icon { display: none; }
+  .cta-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: clamp(1.3rem, 3.2vw, 1.55rem);
+    margin-bottom: .8rem;
+  }
+  .cta-card p {
+    font-size: clamp(.92rem, 2.2vw, .98rem);
+    margin-bottom: 2rem; line-height: 1.55;
+    flex-grow: 1;
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: clamp(.8rem, 1.8vw, .85rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+    cursor: pointer; border: none;
+  }
+  .cta-card.cta-orange { background: var(--orange); }
+  .cta-card.cta-orange h3 { color: #fff; }
+  .cta-card.cta-orange p { color: rgba(255,255,255,.95); }
+  .cta-card.cta-orange .cta-btn { background: #fff; color: var(--orange); }
+  .cta-card.cta-orange .cta-btn:hover { background: var(--orange-light); color: #fff; }
+  .cta-card.cta-white { background: var(--white); }
+  .cta-card.cta-white h3 { color: var(--navy-deep); }
+  .cta-card.cta-white p { color: var(--navy-deep); }
+  .cta-card.cta-white .cta-btn { background: var(--navy-deep); color: #fff; }
+  .cta-card.cta-white .cta-btn:hover { background: var(--navy-darker); }
+
+  /* ── FOOTER ── */
+  footer {
+    background-color: var(--navy-darker);
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 2rem 5vw;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    color: rgba(255,255,255,.7);
+    display: inline-flex; align-items: center;
+    height: 20px;
+  }
+  .footer-logo svg { height: 100%; width: auto; display: block; }
+  footer p { font-size: .78rem; color: rgba(255,255,255,.5); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 760px) {
+    .funziona-grid,
+    .affiancamento-grid,
+    .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero { padding: 8rem 5vw 4rem; }
+    .section { padding: 4rem 5vw; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .a  { animation: fadeUp .65s ease both; }
+  .d1 { animation-delay: .05s; }
+  .d2 { animation-delay: .2s; }
+  .d3 { animation-delay: .35s; }
+  .d4 { animation-delay: .5s; }
+  .d5 { animation-delay: .65s; }
+
+  /* ── MODAL LEAD FORM ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(20,34,58,0.78);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 1.5rem;
+    animation: fadeIn .25s ease;
+  }
+  .modal-overlay.is-open { display: flex; }
+  .modal {
+    background: var(--white);
+    width: 100%; max-width: 540px;
+    padding: 2.6rem 2.4rem 2rem;
+    border-top: 4px solid var(--orange);
+    box-shadow: 0 30px 80px rgba(20,34,58,.35);
+    position: relative;
+    animation: modalUp .35s ease;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: .8rem; right: 1rem;
+    background: transparent; border: none;
+    font-size: 1.5rem; color: var(--gray);
+    cursor: pointer; line-height: 1; padding: .3rem .5rem;
+  }
+  .modal-close:hover { color: var(--navy-deep); }
+  .modal h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: clamp(1.5rem, 4vw, 1.8rem);
+    color: var(--navy-deep); margin-bottom: .8rem; line-height: 1.15;
+  }
+  .modal-intro {
+    font-size: clamp(.92rem, 2.3vw, .98rem);
+    color: var(--text-soft);
+    margin-bottom: 1.6rem; line-height: 1.55;
+  }
+  .form-row { margin-bottom: 1rem; display: grid; gap: .35rem; }
+  .form-row label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; font-size: .78rem;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--navy-mid);
+  }
+  .form-row input {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; color: var(--text);
+    padding: .7rem .85rem;
+    border: 1px solid var(--steel);
+    background: var(--white);
+    transition: border-color .15s;
+    outline: none;
+    border-radius: 0;
+  }
+  .form-row input:focus { border-color: var(--orange); }
+  .form-row.row-2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+  }
+  .form-row.row-2 > div { display: grid; gap: .35rem; }
+  .modal-submit {
+    display: inline-flex; align-items: center; gap: .7rem;
+    background: var(--orange); color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: .9rem;
+    letter-spacing: .13em; text-transform: uppercase;
+    padding: 1.1rem 2rem; border: none;
+    border-radius: 999px;
+    cursor: pointer; transition: background .2s;
+    width: 100%; justify-content: center; margin-top: .8rem;
+  }
+  .modal-submit:hover:not(:disabled) { background: var(--orange-light); }
+  .modal-submit:disabled { opacity: .65; cursor: not-allowed; }
+  .modal-privacy {
+    font-size: .78rem; color: var(--gray);
+    margin-top: 1rem; line-height: 1.5;
+  }
+  .modal-status {
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    border-left: 3px solid var(--orange);
+    background: var(--bg-alt);
+    font-size: .9rem; color: var(--navy-deep);
+    display: none; line-height: 1.45;
+  }
+  .modal-status.is-error {
+    border-left-color: #b3361f;
+    color: #6e2114; background: #fbeae6;
+  }
+  .modal-status.is-visible { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes modalUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 540px) {
+    .form-row.row-2 { grid-template-columns: 1fr; }
+    .modal { padding: 2rem 1.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" aria-label="BLM Project">
+    <svg viewBox="0 0 173 19" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+      <path d="M0 .38h7.43c1.16 0 2.13.19 2.93.58.79.39 1.4.93 1.8 1.63.41.7.61 1.51.61 2.45 0 .85-.21 1.62-.64 2.3-.43.69-.99 1.19-1.69 1.52.98.27 1.78.82 2.43 1.65.64.83.96 1.8.96 2.9 0 1.03-.25 1.92-.75 2.67-.5.75-1.17 1.32-2.01 1.71-.84.39-1.78.58-2.81.58H0V.38Zm8.85 7.29c.42-.22.76-.53 1-.94.24-.41.37-.86.37-1.37 0-.8-.27-1.45-.8-1.95-.53-.51-1.28-.76-2.24-.76H2.55v5.34h4.85c.54 0 1.03-.11 1.45-.33Zm.79 8.03c.52-.25.91-.61 1.18-1.07.27-.46.41-.98.41-1.56 0-.54-.14-1.03-.41-1.45-.27-.42-.65-.76-1.13-1-.48-.24-1.02-.37-1.61-.37H2.55v5.83h5.37c.63 0 1.21-.13 1.72-.38Z"/>
+      <path d="M17.29.38h2.6v15.64h8.78v2.36H17.28V.38h.01Z"/>
+      <path d="M31.01.38h2.28l6.64 8.86L46.6.38h2.3v18h-2.63V4.61l-5.96 8.02h-.76l-5.94-8.05V18.38h-2.6V.38Z"/>
+      <path d="M60.26.38h7.45c1.16 0 2.19.26 3.1.77.91.51 1.63 1.22 2.16 2.11.52.89.79 1.91.79 3.05s-.26 2.22-.77 3.13c-.51.91-1.23 1.62-2.14 2.13-.91.51-1.95.76-3.1.76h-4.88v6.04h-2.6V.38h-.01Zm9.15 9.12c.53-.32.95-.75 1.26-1.31.31-.56.46-1.18.46-1.87 0-.65-.15-1.25-.46-1.79-.31-.54-.73-.98-1.27-1.3-.54-.33-1.15-.49-1.82-.49h-4.72v7.24h4.77c.65 0 1.24-.16 1.78-.47v-.01Z"/>
+      <path d="M76.69.38h7.67c1.17 0 2.22.24 3.14.72.92.48 1.64 1.15 2.16 2.01.51.86.77 1.85.77 2.97 0 1.3-.35 2.42-1.04 3.35-.7.93-1.64 1.57-2.83 1.91l4.26 7.05H87.78l-3.85-6.67h-4.64v6.67h-2.6V.38Zm10.09 8.16c.66-.63.99-1.45.99-2.44 0-.63-.15-1.2-.46-1.71-.31-.51-.73-.91-1.26-1.21-.53-.3-1.13-.45-1.78-.45h-4.99v6.78h4.99c1.01-.02 1.85-.34 2.51-.98v.01Z"/>
+      <path d="M112.06 16.02h2.33c1.43 0 2.47-.38 3.12-1.15.65-.77.98-1.95.98-3.54V.38h2.6v10.9c0 2.35-.58 4.12-1.73 5.31-1.16 1.19-2.77 1.79-4.83 1.79h-2.47v-2.36Z"/>
+      <path d="M103.55 0h-2.4v18.73h2.4V0Z"/>
+      <path d="M111.72 8.16H92.99v2.4h18.73v-2.4Z"/>
+      <path d="m96.58 1.9-1.697 1.697 13.245 13.244 1.697-1.697L96.58 1.9Z"/>
+      <path d="m108.128 1.892-13.244 13.244 1.697 1.697 13.244-13.244-1.697-1.697Z"/>
+      <path d="M125.78.38h12.06v2.39h-9.46v5.34h8.21v2.22h-8.21v5.69h9.6v2.36h-12.2V.38Z"/>
+      <path d="M144.3 17.47c-1.44-.84-2.57-1.97-3.4-3.4-.83-1.43-1.25-3-1.25-4.72 0-1.72.42-3.29 1.25-4.72.83-1.43 1.97-2.56 3.4-3.39C145.74.42 147.32 0 149.04 0c1.32 0 2.58.25 3.77.76 1.19.51 2.22 1.26 3.08 2.25.86.99 1.43 2.21 1.72 3.63h-2.68c-.29-1.32-.99-2.35-2.09-3.1-1.1-.75-2.39-1.13-3.85-1.13-1.27 0-2.4.29-3.42.88-1.01.59-1.81 1.41-2.4 2.47-.59 1.06-.88 2.25-.88 3.59 0 1.34.3 2.56.89 3.62.59 1.06 1.41 1.88 2.44 2.47 1.03.59 2.18.88 3.44.88 1.43 0 2.66-.36 3.7-1.08 1.04-.72 1.75-1.77 2.13-3.14h2.71c-.29 1.45-.86 2.67-1.71 3.66-.85.99-1.88 1.74-3.08 2.24-1.2.5-2.46.75-3.78.75-1.72 0-3.29-.42-4.73-1.26v-.02Z"/>
+      <path d="M163.89 2.74h-5.61V.38h13.83v2.36h-5.61v15.64h-2.6V2.74h-.01Z"/>
+    </svg>
+  </a>
+  <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="nav-cta">Prenota una call <span aria-hidden="true">→</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-deco" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <line x1="100" y1="5"   x2="100" y2="195" stroke="white" stroke-width="8"/>
+    <line x1="5"   y1="100" x2="195" y2="100" stroke="white" stroke-width="8"/>
+    <line x1="25"  y1="25"  x2="175" y2="175" stroke="white" stroke-width="8"/>
+    <line x1="175" y1="25"  x2="25"  y2="175" stroke="white" stroke-width="8"/>
+    <line x1="14"  y1="60"  x2="186" y2="140" stroke="white" stroke-width="8"/>
+    <line x1="14"  y1="140" x2="186" y2="60"  stroke="white" stroke-width="8"/>
+  </svg>
+  <div class="hero-inner">
+    <p class="hero-eyebrow a d1">FPI · BLM Project</p>
+    <h1 class="a d2">Fondi paritetici interprofessionali<br>per la tua <em>azienda</em></h1>
+    <p class="hero-sub a d3">Ogni mese la tua azienda versa un contributo che potrebbe finanziare la formazione del personale.</p>
+    <p class="hero-alert a d4">Nella maggior parte delle aziende, quella quota non arriva mai a destinazione.</p>
+    <div class="btn-group a d5">
+      <a href="#" data-action="download-guide" class="btn-primary">Scarica la guida gratuita <span aria-hidden="true">↓</span></a>
+      <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="btn-secondary">Prenota una call <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- COME FUNZIONA -->
+<section class="section section-white" id="come-funziona">
+  <div class="section-inner">
+    <div class="funziona-grid">
+      <div class="funziona-text">
+        <p class="section-label">Come funziona</p>
+        <h2 class="section-title">Cosa potresti fare con Lo 0,30% che già versate <em>ogni mese?</em></h2>
+        <p>Tutte le aziende del settore privato versano ogni mese all'INPS il contributo dello <strong>0,30% sulla retribuzione di ogni dipendente</strong>. Per impostazione predefinita, quella quota confluisce nel bilancio previdenziale generale.</p>
+        <p>Aderendo a un fondo paritetico interprofessionale, la stessa quota viene destinata a un <strong>conto formazione intestato all'azienda</strong>, da cui attingere per finanziare piani formativi riconosciuti dal fondo.</p>
+        <p>Le risorse accumulate restano disponibili per un triennio; trascorso questo periodo rientrano nella mutualità del fondo. Scegliere il fondo più adatto alla propria realtà è il primo passo.</p>
+      </div>
+      <div class="plafond-block">
+        <p class="section-label">Plafond stimato*</p>
+        <div class="plafond-item">
+          <div class="plafond-amount">~ 5.650 €/anno</div>
+          <div class="plafond-note">Azienda tra 16 e 30 dipendenti</div>
+        </div>
+        <div class="plafond-item">
+          <div class="plafond-amount">+ 6.800 €/anno</div>
+          <div class="plafond-note">Azienda tra 31 e 50 dipendenti</div>
+        </div>
+        <p class="plafond-disclaimer">*Stime indicative calcolate sulla base di Fonder, uno dei fondi paritetici interprofessionali utilizzati da BLM Project. Il plafond effettivo dipende dal fondo scelto, dal settore, dalla retribuzione media dei dipendenti e dalla composizione del personale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFFIANCAMENTO -->
+<section class="section section-alt" id="affiancamento">
+  <div class="section-inner">
+    <div class="affiancamento-grid">
+      <div>
+        <p class="section-label">Il nostro affiancamento</p>
+        <h2 class="section-title">Gestione tecnica<br>e <em>amministrativa</em>,<br>senza oneri interni</h2>
+      </div>
+      <div class="affiancamento-text">
+        <div class="topic-block">
+          <h4 class="topic-title">Consulenza e orientamento</h4>
+          <p>BLM Project affianca le aziende del settore privato nella gestione tecnica e amministrativa: scelta del fondo più adatto, adesione, costruzione del piano formativo, rendicontazione, scadenze; senza oneri operativi per gli uffici interni.</p>
+        </div>
+        <div class="topic-block">
+          <h4 class="topic-title">Progettazione, gestione e rendicontazione</h4>
+          <p>L'affiancamento è attivabile in qualsiasi fase, sia in caso di prima adesione sia per aziende che hanno già un fondo attivo. Il nostro intervento può partire in qualsiasi momento del percorso, non necessariamente dall'adesione iniziale.</p>
+        </div>
+        <div class="topic-block">
+          <h4 class="topic-title">Docenza</h4>
+          <p>BLM Project eroga docenza in ambito di Sostenibilità e Intelligenza Artificiale, coordinando una rete di professionisti selezionati per tutti gli altri ambiti di intervento previsti dal piano formativo, anche esperti individuati dall'azienda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-section" id="inizia">
+  <div class="cta-inner">
+    <h2 class="cta-heading">Da dove vuoi <em>iniziare?</em></h2>
+    <div class="cta-grid">
+      <div class="cta-card cta-orange" id="guida">
+        <h3>Scarica la guida gratuita</h3>
+        <p>Un documento che spiega il funzionamento dei fondi paritetici interprofessionali per le aziende, i criteri di scelta del fondo e i passaggi operativi.</p>
+        <a href="#" data-action="download-guide" class="cta-btn">Scarica ora <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="cta-card cta-white">
+        <h3>Prenota una call</h3>
+        <p>Un confronto di circa venti minuti con la dott.ssa Zaimi per verificare il fondo più coerente con la tua azienda, stimare il plafond già maturato e valutare un'eventuale modalità di affiancamento.</p>
+        <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="cta-btn">Prenota ora <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo" aria-label="BLM Project">
+    <svg viewBox="0 0 173 19" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+      <path d="M0 .38h7.43c1.16 0 2.13.19 2.93.58.79.39 1.4.93 1.8 1.63.41.7.61 1.51.61 2.45 0 .85-.21 1.62-.64 2.3-.43.69-.99 1.19-1.69 1.52.98.27 1.78.82 2.43 1.65.64.83.96 1.8.96 2.9 0 1.03-.25 1.92-.75 2.67-.5.75-1.17 1.32-2.01 1.71-.84.39-1.78.58-2.81.58H0V.38Zm8.85 7.29c.42-.22.76-.53 1-.94.24-.41.37-.86.37-1.37 0-.8-.27-1.45-.8-1.95-.53-.51-1.28-.76-2.24-.76H2.55v5.34h4.85c.54 0 1.03-.11 1.45-.33Zm.79 8.03c.52-.25.91-.61 1.18-1.07.27-.46.41-.98.41-1.56 0-.54-.14-1.03-.41-1.45-.27-.42-.65-.76-1.13-1-.48-.24-1.02-.37-1.61-.37H2.55v5.83h5.37c.63 0 1.21-.13 1.72-.38Z"/>
+      <path d="M17.29.38h2.6v15.64h8.78v2.36H17.28V.38h.01Z"/>
+      <path d="M31.01.38h2.28l6.64 8.86L46.6.38h2.3v18h-2.63V4.61l-5.96 8.02h-.76l-5.94-8.05V18.38h-2.6V.38Z"/>
+      <path d="M60.26.38h7.45c1.16 0 2.19.26 3.1.77.91.51 1.63 1.22 2.16 2.11.52.89.79 1.91.79 3.05s-.26 2.22-.77 3.13c-.51.91-1.23 1.62-2.14 2.13-.91.51-1.95.76-3.1.76h-4.88v6.04h-2.6V.38h-.01Zm9.15 9.12c.53-.32.95-.75 1.26-1.31.31-.56.46-1.18.46-1.87 0-.65-.15-1.25-.46-1.79-.31-.54-.73-.98-1.27-1.3-.54-.33-1.15-.49-1.82-.49h-4.72v7.24h4.77c.65 0 1.24-.16 1.78-.47v-.01Z"/>
+      <path d="M76.69.38h7.67c1.17 0 2.22.24 3.14.72.92.48 1.64 1.15 2.16 2.01.51.86.77 1.85.77 2.97 0 1.3-.35 2.42-1.04 3.35-.7.93-1.64 1.57-2.83 1.91l4.26 7.05H87.78l-3.85-6.67h-4.64v6.67h-2.6V.38Zm10.09 8.16c.66-.63.99-1.45.99-2.44 0-.63-.15-1.2-.46-1.71-.31-.51-.73-.91-1.26-1.21-.53-.3-1.13-.45-1.78-.45h-4.99v6.78h4.99c1.01-.02 1.85-.34 2.51-.98v.01Z"/>
+      <path d="M112.06 16.02h2.33c1.43 0 2.47-.38 3.12-1.15.65-.77.98-1.95.98-3.54V.38h2.6v10.9c0 2.35-.58 4.12-1.73 5.31-1.16 1.19-2.77 1.79-4.83 1.79h-2.47v-2.36Z"/>
+      <path d="M103.55 0h-2.4v18.73h2.4V0Z"/>
+      <path d="M111.72 8.16H92.99v2.4h18.73v-2.4Z"/>
+      <path d="m96.58 1.9-1.697 1.697 13.245 13.244 1.697-1.697L96.58 1.9Z"/>
+      <path d="m108.128 1.892-13.244 13.244 1.697 1.697 13.244-13.244-1.697-1.697Z"/>
+      <path d="M125.78.38h12.06v2.39h-9.46v5.34h8.21v2.22h-8.21v5.69h9.6v2.36h-12.2V.38Z"/>
+      <path d="M144.3 17.47c-1.44-.84-2.57-1.97-3.4-3.4-.83-1.43-1.25-3-1.25-4.72 0-1.72.42-3.29 1.25-4.72.83-1.43 1.97-2.56 3.4-3.39C145.74.42 147.32 0 149.04 0c1.32 0 2.58.25 3.77.76 1.19.51 2.22 1.26 3.08 2.25.86.99 1.43 2.21 1.72 3.63h-2.68c-.29-1.32-.99-2.35-2.09-3.1-1.1-.75-2.39-1.13-3.85-1.13-1.27 0-2.4.29-3.42.88-1.01.59-1.81 1.41-2.4 2.47-.59 1.06-.88 2.25-.88 3.59 0 1.34.3 2.56.89 3.62.59 1.06 1.41 1.88 2.44 2.47 1.03.59 2.18.88 3.44.88 1.43 0 2.66-.36 3.7-1.08 1.04-.72 1.75-1.77 2.13-3.14h2.71c-.29 1.45-.86 2.67-1.71 3.66-.85.99-1.88 1.74-3.08 2.24-1.2.5-2.46.75-3.78.75-1.72 0-3.29-.42-4.73-1.26v-.02Z"/>
+      <path d="M163.89 2.74h-5.61V.38h13.83v2.36h-5.61v15.64h-2.6V2.74h-.01Z"/>
+    </svg>
+  </span>
+  <p>© BLM Project srl · Tutti i diritti riservati</p>
+</footer>
+
+<!-- MODAL LEAD FORM -->
+<div class="modal-overlay" id="leadModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" aria-label="Chiudi">×</button>
+    <p class="section-label">Scarica la guida</p>
+    <h3 id="modalTitle">Pochi dati e parte il download</h3>
+    <p class="modal-intro">Compila i campi qui sotto per ricevere la guida sui Fondi Paritetici Interprofessionali per le aziende.</p>
+    <form id="leadForm" novalidate>
+      <div class="form-row row-2">
+        <div>
+          <label for="lead-nome">Nome</label>
+          <input type="text" id="lead-nome" name="nome" required autocomplete="given-name">
+        </div>
+        <div>
+          <label for="lead-cognome">Cognome</label>
+          <input type="text" id="lead-cognome" name="cognome" required autocomplete="family-name">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="lead-email">Email</label>
+        <input type="email" id="lead-email" name="email" required autocomplete="email">
+      </div>
+      <div class="form-row">
+        <label for="lead-scuola">Azienda di riferimento</label>
+        <input type="text" id="lead-scuola" name="scuola" required autocomplete="organization">
+      </div>
+      <button type="submit" class="modal-submit" id="modalSubmit">Scarica la guida →</button>
+      <div class="modal-status" id="modalStatus" role="status" aria-live="polite"></div>
+      <p class="modal-privacy">I dati raccolti saranno trattati da BLM Project Srl per inviare la guida e per eventuali comunicazioni inerenti al servizio. Non saranno ceduti a terzi.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Endpoint Apps Script per la raccolta dati. Sostituire con l'URL ottenuto dal deploy del Web App.
+  var ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbzwD3jYG_AQz-LhaU2asG0sV5kRyGg25OcS8QCDBvxLX0TifOUn_STU1mYc195sMwvg/exec";
+  var PDF_URL = "https://drive.google.com/uc?export=download&id=1dP2sGObsdG4mqUO4USl4YSuUt9HJbbeU";
+
+  var overlay = document.getElementById('leadModal');
+  var form = document.getElementById('leadForm');
+  var closeBtn = overlay.querySelector('.modal-close');
+  var submitBtn = document.getElementById('modalSubmit');
+  var statusBox = document.getElementById('modalStatus');
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+      var first = document.getElementById('lead-nome');
+      if (first) first.focus();
+    }, 200);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    statusBox.classList.remove('is-visible', 'is-error');
+    statusBox.textContent = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Scarica la guida →';
+  }
+
+  function showStatus(msg, isError) {
+    statusBox.textContent = msg;
+    statusBox.classList.toggle('is-error', !!isError);
+    statusBox.classList.add('is-visible');
+  }
+
+  // Bind dei bottoni "Scarica la guida"
+  document.querySelectorAll('a[data-action="download-guide"]').forEach(function(a) {
+    a.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Validazione minima
+    var nome = form.nome.value.trim();
+    var cognome = form.cognome.value.trim();
+    var email = form.email.value.trim();
+    var scuola = form.scuola.value.trim();
+
+    if (!nome || !cognome || !email || !scuola) {
+      showStatus('Compila tutti i campi prima di proseguire.', true);
+      return;
+    }
+    var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!emailValid) {
+      showStatus('Controlla il formato dell’email.', true);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso...';
+    statusBox.classList.remove('is-visible', 'is-error');
+
+    var payload = {
+      nome: nome,
+      cognome: cognome,
+      email: email,
+      scuola: scuola,
+      timestamp: new Date().toISOString(),
+      fonte: window.location.href
+    };
+
+    var sendPromise;
+    if (ENDPOINT_URL && ENDPOINT_URL.indexOf('http') === 0) {
+      sendPromise = fetch(ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+      });
+    } else {
+      // Endpoint non configurato: procediamo comunque con il download per non bloccare l'utente
+      sendPromise = Promise.resolve();
+    }
+
+    sendPromise.then(function() {
+      showStatus('Grazie. Il download della guida sta per partire.');
+      submitBtn.textContent = 'Download avviato';
+      setTimeout(function() {
+        window.open(PDF_URL, '_blank', 'noopener');
+        setTimeout(closeModal, 2000);
+      }, 600);
+    }).catch(function() {
+      showStatus('Si è verificato un errore. Riprova o scrivi a info@blmproject.com.', true);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Scarica la guida →';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
